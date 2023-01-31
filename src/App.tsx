@@ -1,6 +1,5 @@
 import React from "react";
-import { StrengthSections } from "./components/StrengthSections";
-import "./css/form.css";
+import { Form } from "./components/Form";
 import { isPasswordValid } from "./Utils/Types";
 
 const NumbersReg = /\d/;
@@ -17,7 +16,6 @@ export const App = () => {
       includesLetters: false,
     }
   );
-  console.log(isPasswordValid);
 
   const onChangePassword = (password: string) => {
     setPassword(password);
@@ -30,21 +28,10 @@ export const App = () => {
   };
 
   return (
-    <div className="form__inner">
-      <h2 className="form__title">Test Password Strength</h2>
-      <div className="form">
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => onChangePassword(e.target.value)}
-          className="form__input"
-          placeholder="Password"
-        />
-        <StrengthSections
-          isPasswordValid={isPasswordValid}
-          password={password}
-        />
-      </div>
-    </div>
+    <Form
+      password={password}
+      onChangePassword={onChangePassword}
+      isPasswordValid={isPasswordValid}
+    />
   );
 };

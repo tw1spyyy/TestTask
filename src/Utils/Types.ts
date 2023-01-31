@@ -1,6 +1,5 @@
 export interface StrengthProps {
-    password : string
-    isPasswordValid: isPasswordValid
+    passwordLevel: string
 }
 export interface isPasswordValid {
     minChar: boolean,
@@ -10,8 +9,23 @@ export interface isPasswordValid {
 }
 
 export enum PasswordLevelEnum {
-    none = 'none',
+    none = 'enter at least 8 characters',
     easy = 'easy',
     medium = 'medium',
     strong = 'strong',
+}
+export interface StrengthLineInt {
+    passwordLevel: string,
+    id:string
+}
+
+export interface useBgColorTypes {
+    passwordLevel: string,
+    id:string,
+    lineBg: string
+}
+export interface FormInt {
+    password: string,
+    onChangePassword :(password: string) => void ,
+    isPasswordValid : isPasswordValid
 }

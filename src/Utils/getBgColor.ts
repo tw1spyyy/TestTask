@@ -1,17 +1,13 @@
 export  const getBgColor = (passwordLevel: string): string => {
     switch (passwordLevel) {
-      case "none":
+      case "enter at least 8 characters":
         return "red";
-        break;
       case "easy":
         return "red";
-        break;
       case "medium":
         return "yellow";
-        break;
       case "strong":
         return "green";
-        break;
       default:
         return "grey";
     }
