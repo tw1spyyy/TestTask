@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { StrengthSections } from "./components/StrengthSections";
+import "./css/form.css";
+import { isPasswordValid } from "./Utils/Types";
 
-function App() {
+const NumbersReg = /\d/;
+const LettersReg = /[A-Za-z]/;
+const SymbolsReg = /[ !@#$%^&*()_+\[\]{};':"\\|,.<>\/?]/;
+
+export const App = () => {
+  const [password, setPassword] = React.useState("");
+  const [isPasswordValid, setIsPasswordValid] = React.useState<isPasswordValid>(
+    {
+      minChar: false,
+      includesNumbers: false,
+      includesSymbols: false,
+      includesLetters: false,
+    }
+  );
+  console.log(isPasswordValid);
+
+  const onChangePassword = (password: string) => {
+    setPassword(password);
+    setIsPasswordValid({
+      minChar: password.length >= 8,
+      includesNumbers: NumbersReg.test(password),
+      includesSymbols: SymbolsReg.test(password),
+      includesLetters: LettersReg.test(password),
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="form__inner">
+      <h2 className="form__title">Test Password Strength</h2>
+      <div className="form">
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => onChangePassword(e.target.value)}
+          className="form__input"
+          placeholder="Password"
+        />
+        <StrengthSections
+          isPasswordValid={isPasswordValid}
+          password={password}
+        />
+      </div>
     </div>
   );
-}
-
-export default App;
+};
