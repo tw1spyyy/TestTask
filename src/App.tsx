@@ -3,7 +3,7 @@ import { Form } from "./components/Form";
 import { isPasswordValid } from "./Utils/Types";
 
 const NumbersReg = /\d/;
-const LettersReg = /[A-Za-z]/;
+const LettersReg = /[A-Za-zА-Яа-я]/;
 const SymbolsReg = /[ !@#$%^&*()_+\[\]{};':"\\|,.<>\/?]/;
 
 export const App = () => {
