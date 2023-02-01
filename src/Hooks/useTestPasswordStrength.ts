@@ -1,6 +1,8 @@
-import { isPasswordValid, PasswordLevelEnum } from "./Types";
+import React from "react";
+import { isPasswordValid, PasswordLevelEnum } from "../Utils/Types";
 
-export const testPasswordStrength = (isPasswordValid: isPasswordValid, password: string): string => {
+export const useTestPasswordStrength = (isPasswordValid: isPasswordValid, password: string): string => {
+   return React.useMemo(() =>{
     if (
       isPasswordValid.includesSymbols &&
       isPasswordValid.includesNumbers &&
@@ -22,4 +24,5 @@ export const testPasswordStrength = (isPasswordValid: isPasswordValid, password:
     } else {
         return ''
     }
+   }, [isPasswordValid, password])
   };

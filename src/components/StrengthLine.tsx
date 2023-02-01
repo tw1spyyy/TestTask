@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useBgColor } from "../Hooks/useBgColor";
-import { getBgColor } from "../Utils/getBgColor";
+import { useGetBgColor } from "../Hooks/useGetBgColor";
 import { StrengthLineInt } from "../Utils/Types";
 
 const StyledLine = styled.div`
@@ -12,7 +12,7 @@ const StyledLine = styled.div`
 `;
 
 export const StrengthLine = ({ passwordLevel, id }: StrengthLineInt) => {
-  const lineBg = getBgColor(passwordLevel);
+  const lineBg = useGetBgColor(passwordLevel);
   const color = useBgColor({ passwordLevel, id, lineBg });
 
   return <StyledLine color={color} />;

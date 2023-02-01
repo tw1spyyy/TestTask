@@ -4,7 +4,7 @@ import { isPasswordValid } from "./Utils/Types";
 
 const NumbersReg = /\d/;
 const LettersReg = /[A-Za-zА-Яа-я]/;
-const SymbolsReg = /[ !@#$%^&*()_+\[\]{};':"\\|,.<>\/?]/;
+const SymbolsReg = /[ !@#$%^&*()_+\[\]{};':"\\|,.<>\/?`]/;
 
 export const App = () => {
   const [password, setPassword] = React.useState("");

@@ -2,8 +2,8 @@ import React from "react";
 import { FormInt } from "../Utils/Types";
 import { StrengthSections } from "./StrengthSections";
 import styled from "styled-components";
-import { testPasswordStrength } from "../Utils/testPasswordStrength";
-import { getBgColor } from "../Utils/getBgColor";
+import { useTestPasswordStrength } from "../Hooks/useTestPasswordStrength";
+import { useGetBgColor } from "../Hooks/useGetBgColor";
 
 const FormInner = styled.div`
   padding: 20px 10px;
@@ -60,7 +60,7 @@ export const Form = ({
   isPasswordValid,
 }: FormInt) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
-  const passwordLevel = testPasswordStrength(isPasswordValid, password);
+  const passwordLevel = useTestPasswordStrength(isPasswordValid, password);
 
   return (
     <FormInner>
@@ -78,7 +78,7 @@ export const Form = ({
           onMouseUp={() => setShowPassword(false)}
         />
         <StrengthSections passwordLevel={passwordLevel} />
-        <PasswordLevelDiv color={getBgColor(passwordLevel)}>
+        <PasswordLevelDiv color={useGetBgColor(passwordLevel)}>
           {passwordLevel}
         </PasswordLevelDiv>
       </div>
